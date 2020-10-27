@@ -15,6 +15,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/App.scss";
 import CharacterCard from "./Components/CharacterCard";
 
+
 const url = "https://rickandmortyapi.com/api/character/";
 
 function groupBy(arr: Data[], num: number) {
