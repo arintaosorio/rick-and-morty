@@ -9,7 +9,7 @@ import {
   FormControl,
 } from "react-bootstrap";
 import Pagination from "./Components/Pagination";
-import { AppState, ResponeType, Data } from "./types";
+import { AppState, ResponseType, Data } from "./types";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/App.scss";
 import CharacterCard from "./Components/CharacterCard";
@@ -31,8 +31,8 @@ function App() {
     searchText: "",
   });
 
-  const fetchData = useCallback((url: string, activePage = 0) => {
-    Axios.get<ResponeType>(url)
+  const fetchData = useCallback((url: string, activePage = 1) => {
+    Axios.get<ResponseType>(url)
       .then(({ data }) => {
         setState((st) => ({
           ...st,
@@ -43,8 +43,8 @@ function App() {
             location: character.location.name,
             image: character.image,
             episodes: character.episode,
-          
-         
+    
+        
           })),
         }));
       })
@@ -60,16 +60,16 @@ function App() {
     fetchData(`${url}?page=${activePage}`, activePage);
   }, []);
 
+
   const dataGroupByRow = useMemo(() => {
     const filteredData = state.data?.filter((character) => {
-      return ( 
-        character.name.toLowerCase().includes(state.searchText) ||
-        character.location.toLowerCase().includes(state.searchText) ||
-        character.episodes.join(" ").includes(state.searchText)
-      );
+    return (
+      character.name.toLowerCase().includes(state.searchText) ||
+      character.location.toLowerCase().includes(state.searchText) 
+    );
     });
     return groupBy(filteredData || [], 3);
-  }, [state.data, state.searchText]);
+    }, [state.data, state.searchText]);
 
   return (
     <div className="App">
@@ -88,15 +88,17 @@ function App() {
             <InputGroup.Text>Search</InputGroup.Text>
           </InputGroup.Prepend>
           <FormControl
-          placeholder="Search by name & location. Ex: 'Rick', 'Citadel of Ricks'"
-
-
+          placeholder="By name/location. Ex: 'Summer', 'Citadel of Ricks'"
             onChange={(event) =>
               setState((st) => ({ ...st, searchText: event.target.value }))
             }
           />
         </InputGroup>
-     
+        <Pagination
+          activePage={state.activePage}
+          Pages={state.totalPages}
+          setActivePage={setActivePage}
+        />
 
         {dataGroupByRow.map((row, index) => {
           return (
@@ -117,11 +119,7 @@ function App() {
             </Row>
           );
         })}
-           <Pagination
-          activePage={state.activePage}
-          noOfPages={state.totalPages}
-          setActivePage={setActivePage}
-        />
+         
       </Container>
     </div>
   );

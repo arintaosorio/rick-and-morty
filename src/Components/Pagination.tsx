@@ -3,28 +3,26 @@ import { Pagination } from "react-bootstrap";
 
 interface ComponentProps {
   activePage: number;
-  noOfPages: number;
+  Pages: number;
   setActivePage: (activePage: number) => void;
 }
 
 export default function (props: ComponentProps) {
-  const { noOfPages, activePage, setActivePage } = props;
-  // Create array from 0 to noOfPages - 1
-  const arr = [...Array(noOfPages).keys()];
+  const { Pages, activePage, setActivePage } = props;
+  // Create array from 0 to Pages - 1
+  const arr = [...Array(Pages).keys()];
   return (
     <Pagination size="sm">
-        <Pagination.Prev />
       {arr.map((index) => (
         <Pagination.Item
-          key={`page_${index}`}
+          key={`page_${index+1}`}
           active={index === activePage}
           onClick={() => setActivePage(index)}
         >
           {index}
         </Pagination.Item>
       ))}
-        <Pagination.Ellipsis />
-        <Pagination.Next />
+    
     </Pagination>
   );
 }

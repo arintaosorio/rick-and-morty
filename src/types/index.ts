@@ -1,4 +1,5 @@
-export interface ResponeType {
+
+export interface ResponseType {
   info: InfoType;
   results: ResultType[];
 }
@@ -29,6 +30,7 @@ export interface ResultType {
   episode: string[];
   url: string;
   created: string;
+
 }
 
 export interface Data {

@@ -1,11 +1,59 @@
 .App {
-  text-align: center;
+font-weight: bold;
+.pagination{
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+}.pagination > li > a
+{
+    background-color: white;
+    color: #714197;
+    
+}
 
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover
+{
+    color: #ffffff;
+    background-color: #D784A8;
+    border-color: #ddd;
+}
+
+.pagination > .active > a
+{
+    color: white;
+    background-color: #714197 ;
+    border: solid 1px #714197 ;
+}
+
+.pagination > .active > a:hover
+{
+    background-color: #714197 ;
+    border: solid 1px #714197;
+}
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  background-color: #714197 ;
+  border-color: #714197 ;
+}
   .row {
     margin-bottom: 20px;
     .card {
-      height: 550px;
+      margin-bottom: 20px;
+      height: auto;
       overflow-y: auto;
+    }
+    .card-title{
+      color: #714197;
+      font-weight: bold;
+    }
+    strong{
+   display: block;
+   font-size: 11px;
+      color: #D784A8;
     }
   }
 }
