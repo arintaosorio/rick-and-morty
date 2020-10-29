@@ -13,6 +13,7 @@ export default function (props: ComponentProps) {
   const arr = [...Array(noOfPages).keys()];
   return (
     <Pagination size="sm">
+        <Pagination.Prev />
       {arr.map((index) => (
         <Pagination.Item
           key={`page_${index}`}
@@ -22,6 +23,8 @@ export default function (props: ComponentProps) {
           {index}
         </Pagination.Item>
       ))}
+        <Pagination.Ellipsis />
+        <Pagination.Next />
     </Pagination>
   );
 }

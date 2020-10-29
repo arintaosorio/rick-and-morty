@@ -8,7 +8,6 @@ import {
   InputGroup,
   FormControl,
 } from "react-bootstrap";
-
 import Pagination from "./Components/Pagination";
 import { AppState, ResponeType, Data } from "./types";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -44,12 +43,14 @@ function App() {
             location: character.location.name,
             image: character.image,
             episodes: character.episode,
-            
+          
+         
           })),
         }));
       })
       .catch();
   }, []);
+
 
   useEffect(() => {
     fetchData(`${url}?page=${state.activePage}`);
@@ -87,6 +88,9 @@ function App() {
             <InputGroup.Text>Search</InputGroup.Text>
           </InputGroup.Prepend>
           <FormControl
+          placeholder="Search by name & location. Ex: 'Rick', 'Citadel of Ricks'"
+
+
             onChange={(event) =>
               setState((st) => ({ ...st, searchText: event.target.value }))
             }
@@ -97,8 +101,9 @@ function App() {
         {dataGroupByRow.map((row, index) => {
           return (
             <Row key={`card_key_${index}`}>
+          
               {row.map((col) => (
-                <Col md={4} lg={4} sm={6}>
+                <Col md={4} lg={4} sm={12}>
                   <CharacterCard
                     key={col.name}
                     name={col.name}
@@ -108,6 +113,7 @@ function App() {
                   />
                 </Col>
               ))}
+       
             </Row>
           );
         })}
