@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-
+import Dropdown from 'react-bootstrap/Dropdown';
 interface ComponentProps {
   name: string;
   location: string;
@@ -16,11 +16,19 @@ export default function (props: ComponentProps) {
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Text>{location}</Card.Text>
-        <ul>
-          {
-            episodes.map(episode => <li key={episode}>{episode}</li>)
-          }
-        </ul>
+        <Dropdown>
+  <Dropdown.Toggle variant="info" id="dropdown-basic">
+Episodes 
+  </Dropdown.Toggle>
+
+  <Dropdown.Menu>
+    <Dropdown.Item > {
+ episodes.map(episode => <li key={episode}>{episode}</li>)
+          }</Dropdown.Item>
+  
+  </Dropdown.Menu>
+</Dropdown>
+       
       </Card.Body>
     </Card>
   );

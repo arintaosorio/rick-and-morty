@@ -44,6 +44,7 @@ function App() {
             location: character.location.name,
             image: character.image,
             episodes: character.episode,
+            
           })),
         }));
       })
@@ -60,8 +61,9 @@ function App() {
 
   const dataGroupByRow = useMemo(() => {
     const filteredData = state.data?.filter((character) => {
-      return (
-        character.location.includes(state.searchText) ||
+      return ( 
+        character.name.toLowerCase().includes(state.searchText) ||
+        character.location.toLowerCase().includes(state.searchText) ||
         character.episodes.join(" ").includes(state.searchText)
       );
     });
